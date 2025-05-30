@@ -1,0 +1,26 @@
+{
+  "name": "@philip-roy-jones/taskify-lib",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [],
+  "author": "Philip Roy Jones",
+  "type": "module",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "amqplib": "^0.10.8"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.10.7",
+    "typescript": "^5.8.3"
+  }
+}
