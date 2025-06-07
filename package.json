@@ -1,6 +1,6 @@
 {
-  "name": "@philip-roy-jones/taskify-lib",
-  "version": "1.0.0",
+  "name": "@philip-roy-jones/bloctopus-lib",
+  "version": "1.0.1",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
