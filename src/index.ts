@@ -1,5 +1,5 @@
 import amqp from 'amqplib';
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction, RequestHandler } from 'express';
 
 export async function createRabbitChannel(host: string, port: number, user: string, password: string) {
   const connection = await amqp.connect({
@@ -12,18 +12,20 @@ export async function createRabbitChannel(host: string, port: number, user: stri
   return { connection, channel };
 }
 
-export function injectUserId(req: Request, res: Response, next: NextFunction) {
+export const injectUserId: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
   try {
     const rawPayload = req.headers['x-jwt-payload'];
 
     if (!rawPayload || typeof rawPayload !== 'string') {
-      return res.status(401).json({ error: 'Missing auth payload' });
+      res.status(401).json({ error: 'Missing auth payload' });
+      return;
     }
 
     const { userId } = JSON.parse(rawPayload);
 
     if (!userId) {
-      return res.status(403).json({ error: 'Invalid token: no userId' });
+      res.status(403).json({ error: 'Invalid token: no userId' });
+      return;
     }
 
     // Attach userId to request (optionally cast to custom type)
@@ -31,6 +33,7 @@ export function injectUserId(req: Request, res: Response, next: NextFunction) {
 
     next();
   } catch (err) {
-    return res.status(400).json({ error: 'Malformed JWT payload' });
+    res.status(400).json({ error: 'Malformed JWT payload' });
+    return;
   }
 }
