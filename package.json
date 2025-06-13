@@ -1,6 +1,6 @@
 {
   "name": "@philip-roy-jones/bloctopus-lib",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -17,10 +17,12 @@
     "build": "tsc"
   },
   "dependencies": {
-    "amqplib": "^0.10.8"
+    "amqplib": "^0.10.8",
+    "express": "^5.1.0"
   },
   "devDependencies": {
     "@types/amqplib": "^0.10.7",
+    "@types/express": "^5.0.3",
     "typescript": "^5.8.3"
   }
 }
